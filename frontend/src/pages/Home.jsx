@@ -1,4 +1,6 @@
 
+import Hearder from "../components/Header/Hearder"
+import {Head} from "../components/Head/Head.jsx"
 
 export default function Home() {
   
@@ -9,11 +11,9 @@ export default function Home() {
 < >
 
 
+<Head title="Projeto Tarefa Colab"/> 
+<Hearder/>
 
-   <div className="main">
-iniciando o projeto
-
-   </div>
 
 </>
   )
