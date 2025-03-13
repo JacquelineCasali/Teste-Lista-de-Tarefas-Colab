@@ -1,0 +1,62 @@
+:root {
+
+  --whithe:#ffffff;
+--gray: #F0F2F5;
+
+--gray-10:#D9D9D9;
+--gray-20: #9E9E9E;
+--gray-30:#50656E;
+--primary:#51646E;
+--black: #464646;
+
+
+--x:12px;
+--xx:14px;
+--m:16px;
+  --xl:32px;
+ }
+
+/* Reset */
+/* Seletor Universal */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Inter;
+}
+
+body {
+ 
+background: var(--gray);
+
+/* width: 100%; */
+
+  /* height: 600px; */
+}
+.main{
+
+padding:15px   32px 32px 32px ;
+
+}
+
+@media (max-width: 768px) {
+  
+  .titles{
+    
+    align-items: flex-start;
+   flex-direction: column;
+   padding-bottom: 30px; 
+  }
+  
+
+}
+
+
+
+
+
+
+
+
+
+
