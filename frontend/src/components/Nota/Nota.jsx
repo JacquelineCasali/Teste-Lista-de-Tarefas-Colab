@@ -6,7 +6,7 @@ import {FiStar } from "react-icons/fi"
 
 import "./Nota.css"
 export default function Nota() {
- 
+
   return (
       <section className="section">
 
@@ -18,6 +18,8 @@ export default function Nota() {
      <FiStar style={{height:'18px', width:"20px", color:"#455A64"}}/>
      </Link> 
       </div>
+
+
            <Link style={{cursor:"pointer"}} to={'/cadastro'} >
      <p className='cria-nota'> Criar nota</p>
         </Link>

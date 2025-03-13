@@ -10,10 +10,16 @@ import {FiStar } from "react-icons/fi"
 import { Link } from "react-router-dom";
 import api from "../../api/api";
 import Title from "../Title/Tlite";
+import Loading from "../Loading/Loading";
+
+
 export default function Card() {
 
+  // const [openModal, setOpenModal] = useState(false);
+  
   const [data, setData] = useState([]);
   const [message, setMessage] = useState("");
+
 
   useEffect(() => {
     try {
@@ -34,6 +40,11 @@ export default function Card() {
   return (
     <div  id="outras" >
  <Title >Outras</Title>
+{!data.length?(
+  <Loading/>
+):(
+
+
   <div className="lista-favorito">
 {
             data.map((tarefa)=>{
@@ -56,7 +67,11 @@ export default function Card() {
                           size={17}
                           cursor="pointer"
                           className="icone"
+                         
                         />
+
+
+
                       </Link>
               
                       <Link to={`/edit/${tarefa.id}`}>
@@ -78,8 +93,8 @@ export default function Card() {
     }
   
     </div>
-
-
+)}
+  
 
      
     </div> 

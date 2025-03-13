@@ -6,10 +6,11 @@ import React from "react";
 
 
 import Home from "../pages/Home";
-// import Tarefa from "../pages/Tarefa";
-// import Editar from "../pages/Editar";
+
 import Cadastro from "../pages/Cadastro"
 import Hearder from "../components/Header/Hearder";
+
+import LerCard from "../components/Card/LerCard";
 
 
 
@@ -21,13 +22,14 @@ const AppRoutes = () => {
 
   
     <Router>
+      
     <Hearder/>
 
     <Routes>
       <Route path="/" element={<Home />}/>
-      {/* <Route  path="/:id" element={<Tarefa />} /> */}
+      <Route  path="/:id" element={<LerCard />} />
         <Route  path="/cadastro" element={<Cadastro />} />
- {/* <Route  path="/edit/:id" element={<Editar />} />  */}
+ <Route  path="/edit/:id" element={<Cadastro />} /> 
      
 
    

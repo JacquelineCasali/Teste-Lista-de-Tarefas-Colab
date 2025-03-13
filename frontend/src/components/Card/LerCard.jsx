@@ -1,42 +1,39 @@
-import axios from "axios";
+
 import React, { useEffect, useState } from "react";
 import { Link,useParams } from "react-router-dom";
-import "../styles/Favoritos.css"
-// import { IoMdColorFill } from "react-icons/io";
+
 import { IoClose } from "react-icons/io5";
 import { FaPencil } from "react-icons/fa6";
 import {FiStar } from "react-icons/fi"
-import { Helmet, HelmetProvider } from "react-helmet-async";
-import Hearder from "../components/Hearder"
+import api from "../../api/api";
+import "./Card.css"
 
-export default function Tarefa() {
+export default function LerCard() {
   const { id } = useParams();
-  const [services, setServices] = useState([]);
+  const [tarefa, setTarefa] = useState([]);
 
 
   useEffect(() => {
-    // axios.get('http://127.0.0.1:5430')
-    axios.get("http://127.0.0.1:5430/"+id)
+    
+    // api.get()
+    api.get("/"+id)
       .then((res) => {
         console.log(res);
-        setServices(res.data[0]);
+        setTarefa(res.data[0]);
       })
       .catch((err) => console.log(err));
   }, []);
 //  busca 
   return (
-    <div >
-    <Hearder />
-<HelmetProvider>
-<Helmet title="Editar Tarefa" />
-</HelmetProvider>
+    <div className="titulos" >
+
 <h1 >Detalhe Tarefa</h1> 
  
   <div className="lista-favorito">
   
                 <div className="favorito-tarefa" style={{height:"220px"}}>
                 <div className='superior'>
-                 <h5> {services.titulo}</h5>
+                 <h5> {tarefa.titulo}</h5>
                 <a href="/" >
                 <FiStar style={{height:'18px', width:"20px", color:"#455A64"}}/>
                 </a> 
@@ -44,10 +41,10 @@ export default function Tarefa() {
            
                 </div>
                 
-                <p className='nota'style={{height:"120px"}} > {services.descricao}</p>
+                <p className='nota'style={{height:"120px"}} > {tarefa.descricao}</p>
                 
                <div className='inferior'>     
-               <Link to={`/edit/${services.id}`}>
+               <Link to={`/edit/${tarefa.id}`}>
                 <FaPencil style={{height:'22px', width:"22px", color:"#51646E"}}/>
                 </Link> 
                 {/* <Link className='icone-x' to={'#favoritos'} >
