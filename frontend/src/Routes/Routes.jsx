@@ -5,12 +5,16 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React from "react";
 
 
-import Home from "../pages/Home";
+
 
 import Cadastro from "../pages/Cadastro"
 import Hearder from "../components/Header/Hearder";
 
 import LerCard from "../components/Card/LerCard";
+import Favoritos from "../components/Favoritos/Favoritos";
+import HomeTeste from "../pages/Home";
+import CardProvider from "../context/CardContext";
+
 
 
 
@@ -23,19 +27,26 @@ const AppRoutes = () => {
   
     <Router>
       
-    <Hearder/>
+    
 
-    <Routes>
-      <Route path="/" element={<Home />}/>
+ 
+
+    <CardProvider >
+        <Hearder/>
+   
+<Routes>
+      <Route path="/" element={<HomeTeste />}/>
       <Route  path="/:id" element={<LerCard />} />
         <Route  path="/cadastro" element={<Cadastro />} />
  <Route  path="/edit/:id" element={<Cadastro />} /> 
-     
+ <Route  path="/favoritos" element={<Favoritos />} /> 
 
    
    
   
     </Routes>
+
+    </CardProvider>
 
   </Router>
   </>

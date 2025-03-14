@@ -1,24 +1,35 @@
 
 
-import {Head} from "../components/Head/Head.jsx"
-import Card from "../components/Card/Card.jsx"
+
 import Nota from "../components/Nota/Nota.jsx"
 
+import Main from "../components/Main/Main.jsx"
+import Title from "../components/Title/Tlite.jsx"
+import { CardContext } from "../context/CardContext.jsx"
+import { useContext } from "react"
 
-export default function Home() {
 
 
-
+export default function HomeTeste() {
+  const {dados}=useContext(CardContext)
   return (
     
 < >
 
-
-<Head title=""/> 
-
 <Nota/>
+<Title>Outras</Title>
+<section className="lista-favorito">
 
-<Card  />
+
+<Main dados={dados}/>
+
+
+</section>
+
+
+
+
+
 
 </>
   )

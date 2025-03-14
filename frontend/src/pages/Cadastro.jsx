@@ -11,10 +11,13 @@ import { Link,useNavigate, useParams } from "react-router-dom";
 
 import api from "../api/api";
 import { Head } from "../components/Head/Head";
+
 export default function Cadastrar() {
-
+  const elementId = "color-box"; // ID do elemento que terá a cor alterada
+  
   const {id}=useParams();
-
+  const [color, setColor] = useState(); // Cor inicial branca
+  const [showPicker, setShowPicker] = useState(false); // Controla a visibilidade do input
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -55,13 +58,25 @@ export default function Cadastrar() {
 
     
     <div className="titulos"  >
+ 
       <Head title={id > 0 ?"Editar tarefa":"Cadastrar Tarefa"}/> 
+ 
+ 
     <h1>{id > 0 ?"Editar tarefa":"Cadastrar Tarefa"}</h1> 
+
+
+  
+  
   <div className="lista-favorito">
-                <div className="favorito-tarefa" >
+                <div className="favorito-tarefa" 
+                 id={elementId}
+                 style={{background:color}}
+                >
                    
                 <form className="login-fomr">
-                <div className='superior'>
+                <div className='superior'
+                 id={elementId}
+                 style={{background:color}}>
                 <label htmlFor="">Titulo:</label>
                 <input
             className="input-padrao"
@@ -70,6 +85,8 @@ export default function Cadastrar() {
             onChange={(e) => setValues({ ...values, titulo: e.target.value })}
             placeholder="Digite um titulo"
             required
+            id={elementId}
+            style={{background:color}}
           />
                 <a href="#favoritos" >
                 <FiStar style={{height:'18px', width:"20px", color:"#455A64"}}/>
@@ -84,12 +101,36 @@ export default function Cadastrar() {
             onChange={(e) => setValues({ ...values, descricao: e.target.value })}
             placeholder="Digite uma Tarefa"
             required
+            id={elementId}
+            style={{background:color}}
       />
                   
                <div className='inferior'>     
-                <Link className='icone-x' to={'#favoritos'} >
-                <IoMdColorFill style={{height:'30px', width:"30px", marginRight:"220px", color:"#51646E"}}/>
-                </Link> 
+                     {showPicker && (
+                       <input
+                         type="color"
+                         value={color}
+                         onChange={(e) => setColor(e.target.value)}
+                         style={{
+                           width: "150px",
+                           height: "40px",
+                           border: "none",
+                           cursor: "pointer",
+                         }}
+                       />
+                     )}
+             
+                     <IoMdColorFill
+                       onClick={() => setShowPicker(!showPicker)}
+                       style={{
+                         marginRight: "150px",
+             
+                         color: "black",
+                         fontSize: 20,
+                       }}
+                     >
+                       {showPicker ? "Fechar" : "Escolher Cor"}
+                     </IoMdColorFill>
               
               
                 <Link className='icone-x' to={'/'} >   
@@ -99,7 +140,7 @@ export default function Cadastrar() {
                
                 <button className="button" type="button"
   onClick={SaveTarefa}
-  ><RiSave3Fill className="icone-salvar"style={{height:'35px', width:"35px", color:"blue"}}/></button>
+  ><RiSave3Fill style={{height:'35px', width:"35px", color:"blue"}}/></button>
 
                
               

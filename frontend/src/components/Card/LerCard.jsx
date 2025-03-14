@@ -1,17 +1,18 @@
 
-import React, { useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { Link,useParams } from "react-router-dom";
 
 import { IoClose } from "react-icons/io5";
 import { FaPencil } from "react-icons/fa6";
-import {FiStar } from "react-icons/fi"
+
 import api from "../../api/api";
 import "./Card.css"
 
+import inconeDesfavorito from "../../assets/Vector.png";
+import Hearder from "../Header/Hearder";
 export default function LerCard() {
   const { id } = useParams();
   const [tarefa, setTarefa] = useState([]);
-
 
   useEffect(() => {
     
@@ -23,20 +24,35 @@ export default function LerCard() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+
+
+
 //  busca 
   return (
+    <>
+   
+      
     <div className="titulos" >
 
 <h1 >Detalhe Tarefa</h1> 
- 
+
   <div className="lista-favorito">
   
                 <div className="favorito-tarefa" style={{height:"220px"}}>
                 <div className='superior'>
                  <h5> {tarefa.titulo}</h5>
-                <a href="/" >
-                <FiStar style={{height:'18px', width:"20px", color:"#455A64"}}/>
-                </a> 
+                {/* favorito */}
+                                  <figure className={"icone"} style={{ cursor: "pointer" }}>
+                                    <img
+                                      src={inconeDesfavorito}
+                                      alt="Icone"
+                                      onClick={()=>addFavoritos({id})}
+                                    />
+                                    {/* <img src={inconeDesfavorito} alt="" /> */}
+                                  </figure>
+                
+
 
            
                 </div>
@@ -65,7 +81,7 @@ export default function LerCard() {
      
     </div> 
  
-
+    </>
 
 
    

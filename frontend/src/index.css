@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap" );
 :root {
 
   --whithe:#ffffff;
@@ -33,12 +34,64 @@ background: var(--gray);
 
   /* height: 600px; */
 }
-.main{
 
-padding:15px   32px 32px 32px ;
 
+
+form label{
+  display: block;
+    font-size: var(--m);
+    margin: 0 10px 0 0;
+    font-weight: bold;
+}
+.input-padrao{
+  width: 90%;
+  padding: 10px 15px;
+  border: none;
+  color: var(--gray-30);
+  font-weight: 400;
+  font-size: var(--xx);
+  line-height: 16px;
 }
 
+textarea{
+  width: 90%;
+  margin: 0 0 0 20px;
+  border: none;
+  color: #50656E;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  height: 310px;
+  padding: 5px 0 5px 15px;
+}
+
+.button{
+  background: none;
+    border: none;
+    cursor: pointer;
+   
+}
+
+.button:hover {
+  /* background-color: #1b223c; */
+  transition: 0.5s;
+   /* aumenta o botao em 40% */
+transform: Scale(1.6);
+}
+
+.lista-favorito{
+  display: flex;
+  flex-wrap: wrap;
+  gap:25px;
+  justify-content: start;
+  padding: 0  40px 0  120px;
+  
+  }
+/* .mains{
+  display: flex;
+}
+  
+ */
 @media (max-width: 768px) {
   
   .titles{

@@ -1,12 +1,7 @@
 /* .favoritos{
   margin:0 50px;
 } */
-.lista-favorito{
-    display: flex;
-    flex-wrap: wrap;
-    gap:25px;
-    justify-content: center;
-    }
+
   
   
   .favorito-tarefa{
@@ -19,7 +14,7 @@
   border-radius:25px;
   width: 390px;
   height: 438px;
-  margin-top: 30px;
+  margin-top: 10px;
   }
   .superior{
   border-bottom:1px solid  
@@ -33,7 +28,7 @@
   .nota{
   margin-left: 20px;
     color: 
-    #50656E;
+    black;
     font-weight: 400;
     font-size: 14px;
     line-height: 16px; 
@@ -45,9 +40,9 @@
   display: flex;
   /* width: 60%; */
   justify-content: space-between;
-  /* align-items: center; */
+  align-items: center;
   margin: 10px 20px 0 25px   ;
-  
+  gap: 15px;
   }
   
 .titulos{
@@ -58,6 +53,54 @@ height: 100vh;
 padding-top: 30px;
 }
 
+.btn{
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    background: blue;
+    padding: 10px;
+    color: var(--whithe);
+    font-weight: bolder;
+    border:none;
+    cursor: pointer;
+}
+ .btn-del{
+  
+    border-radius: 5px;
+    background: red;
+    padding: 10px;
+    color: var(--whithe);
+    font-weight: bolder;
+    border:none;
+    cursor: pointer;
+}
+.btn:active,.btn-del:active{
+ 
+    background: black;
+
+}
+.button-color{
+width: 20px;
+
+border: none;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+background: #51646E;
+}
+
+.color{
+  padding: 16px;
+  background: var(--whithe);
+  border-radius: 10px;
+
+  display: flex;
+  flex-wrap: wrap;
+  width: 80px;
+
+  border: 2px solid var(--gray-30);
+}
   @media screen and (max-width: 579px) {
     /* .favorito-tarefa{
       border-radius:25px;
