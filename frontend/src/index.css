@@ -37,6 +37,16 @@ background: var(--gray);
 
 
 
+  .lista-favorito{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr ;
+      gap: 10px;
+      padding: 30px;
+      padding: 0  40px 0  80px;
+width: 100%;
+
+}
+
 form label{
   display: block;
     font-size: var(--m);
@@ -79,27 +89,35 @@ textarea{
 transform: Scale(1.6);
 }
 
-.lista-favorito{
+
+
+
+
+/* .lista-favorito{
   display: flex;
   flex-wrap: wrap;
   gap:25px;
   justify-content: start;
   padding: 0  40px 0  120px;
   
-  }
+  } */
 /* .mains{
   display: flex;
 }
   
  */
 @media (max-width: 768px) {
-  
-  .titles{
+  .lista-favorito{
+    grid-template-columns: 1fr;
+    display: grid;
+    justify-items: center;
+  }
+  /* .titles{
     
     align-items: flex-start;
    flex-direction: column;
    padding-bottom: 30px; 
-  }
+  } */
   
 
 }

@@ -8,7 +8,7 @@ import "./Nota.css"
 export default function Nota() {
 
   return (
-      <section className="section">
+      <section className="sectionNota">
 
   
       <div className="notas">

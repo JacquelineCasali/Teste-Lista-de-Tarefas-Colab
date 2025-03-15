@@ -24,9 +24,12 @@ const searchLowerCase = busca.toLowerCase();
 const dados = data.filter((funcionario) =>
 funcionario.titulo.toLowerCase().includes(searchLowerCase)
 );
+
+
+
     
     return (
-        <CardContext.Provider value={{data, setData,dados,busca,setBusca}}>
+        <CardContext.Provider value={{data, setData,dados,busca,setBusca,getTodos}}>
         {children}
         </CardContext.Provider>
   

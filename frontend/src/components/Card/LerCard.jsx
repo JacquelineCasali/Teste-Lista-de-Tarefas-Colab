@@ -9,7 +9,7 @@ import api from "../../api/api";
 import "./Card.css"
 
 import inconeDesfavorito from "../../assets/Vector.png";
-import Hearder from "../Header/Hearder";
+
 export default function LerCard() {
   const { id } = useParams();
   const [tarefa, setTarefa] = useState([]);

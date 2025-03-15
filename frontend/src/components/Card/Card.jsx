@@ -1,26 +1,24 @@
-import React, { useContext, useEffect, useState } from "react";
-
-import "./Card.css";
+import React, { useContext, useState } from "react";
+import { FavoritosContext } from "../../context/FavoritosContext";
+import { FiStar } from "react-icons/fi";
+import "../Card/Card.css";
+import { Link } from "react-router-dom";
+import { FaBook, FaPencil } from "react-icons/fa6";
 import { IoMdColorFill } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
-import { FaPencil, FaBook } from "react-icons/fa6";
-
-import { Link } from "react-router-dom";
-import api from "../../api/api";
-
 import Modal from "../Modal/Modal";
+import api from "../../api/api";
+import { CardContext } from "../../context/CardContext";
+import { ColorContext } from "../../context/ColorContext";
+import { colorOptions } from "../../utils/Color";
 
-import { FiStar } from "react-icons/fi";
-
-// import ColorPicker from "../Color/Color";
-
-export default function Card({ titulo, descricao, fav, id }) {
-  const elementId = "color-box"; // ID do elemento que terá a cor alterada
+function Card({ item, isFavorite }) {
+  const { toggleFavorite } = useContext(FavoritosContext);
+  const { getTodos } = useContext(CardContext);
   const [openModal, setOpenModal] = useState(false);
-  const [color, setColor] = useState(); // Cor inicial branca
-  const [fontcolor, setFontColor] = useState("black"); // Cor inicial branca
+  const { changeColor, selectedItem, setSelectedItem } =
+    useContext(ColorContext);
 
-  const [showPicker, setShowPicker] = useState(false); // Controla a visibilidade do input
   // Função que abre a modal
   function abrirModal() {
     setOpenModal(true);
@@ -38,106 +36,90 @@ export default function Card({ titulo, descricao, fav, id }) {
     alert("Tarefa deletada com sucesso");
     fecharModal();
   }
-
-
-
   return (
     <>
-      {/* <div className="lista-favorito"> */}
-
-      <div className="favorito-tarefa" 
-              // colors= cores
-              id={elementId}
-              style={{ fontcolor: color ,background:color}}
-             >
-
       <div className="superior">
-        {/* <h5> Titulo</h5> */}
-        <h5> {titulo}</h5>
-        <button>
-          <FiStar
-            style={{ color: "#455a64", fontSize: 20, cursor: "pointer" }}
-          />
-          {fav && (
-            <FiStar
-              style={{ color: "#ffa000", fontSize: 20, cursor: "pointer" }}
-            />
-          )}
-          {/* favorito */}
-          {/* <figure className={"icone"} style={{ cursor: "pointer" }}>
-                    <img
-                      src={inconeDesfavorito}
-                      alt="Icone"
-                  
-                    />
-                 
-                  </figure> */}
-        </button>
+        {item.titulo}
+        <figure
+          onClick={() => toggleFavorite(item.id)}
+          style={{ cursor: "pointer" }}
+        >
+          {isFavorite ? "⭐" : <FiStar />}
+        </figure>
       </div>
 
-      <p className="nota"> {descricao}</p>
+      <p className="nota"> {item.descricao}</p>
 
       <div className="inferior">
-        <Link to={`/${id}`}>
-          <FaBook color="black" size={17} cursor="pointer" className="icone" />
-        </Link>
+        <div>
+          <Link to={`/${item.id}`}>
+            <FaBook
+              color="black"
+              size={17}
+              cursor="pointer"
+              className="icone"
+            />
+          </Link>
+          <Link to={`/edit/${item.id}`}>
+            <FaPencil
+              style={{
+                fontSize: 20,
+                color: "black",
+                margin: " 0 10px 0 10px",
+              }}
+            />
+          </Link>
 
-        <Link to={`/edit/${id}`}>
-          <FaPencil
+          <IoMdColorFill
+            onClick={() =>
+              setSelectedItem(selectedItem === item.id ? null : item.id)
+            }
             style={{
-              fontSize: 20,
-              color: fontcolor,
-            }}
-          />
-        </Link>
-
-        {showPicker && (
-          <input
-            type="color"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-            style={{
-              width: "150px",
-              height: "40px",
-              border: "none",
+              // marginRight: "150px",
               cursor: "pointer",
+              color: "black",
+              fontSize: 20,
             }}
           />
-        )}
-
-        <IoMdColorFill
-          onClick={() => setShowPicker(!showPicker)}
-          style={{
-            marginRight: "150px",
-
-            color: fontcolor,
-            fontSize: 20,
-          }}
-        >
-          {showPicker ? "Fechar" : "Escolher Cor"}
-        </IoMdColorFill>
-              <IoClose
-          style={{ fontSize: 25, color: fontcolor, cursor: "pointer" }}
+        </div>
+        <IoClose
+          style={{ fontSize: 25, color: "black", cursor: "pointer" }}
           onClick={abrirModal}
         />
-        <Modal isOpen={openModal} isClose={fecharModal}>
-          <h2>Olá</h2>
-          <span className="span">
-            Tem certeza que deseja deletar essa Tarefa?
-          </span>
-          <div>
-            <button onClick={fecharModal} className="btn">
-              Cancelar
-            </button>
-            <button onClick={() => handleDelete(tarefa)} className="btn-del">
-              Deletar
-            </button>
-          </div>
-        </Modal>
       </div>
+      <div className="itemColor">
+        {selectedItem === item.id && (
+          <div className="colores">
+            {colorOptions.map((color) => (
+              <button
+                key={color}
+                className="colorOptions"
+                style={{ backgroundColor: color }}
+                onClick={() => changeColor(item.id, color)}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
+      <Modal isOpen={openModal} isClose={fecharModal}>
+        <h2>Olá</h2>
+        <span style={{ padding: " 10px 0" }}>
+          Tem certeza que deseja deletar essa Tarefa?
+          <strong> {item.titulo}</strong>
+        </span>
+        <div>
+          <button onClick={fecharModal} className="btn">
+            Cancelar
+          </button>
+          <button onClick={() => handleDelete(item)} className="btn-del">
+            Deletar
+          </button>
+        </div>
+      </Modal>
       {/* </div> */}
     </>
   );
 }
+
+export default Card;
