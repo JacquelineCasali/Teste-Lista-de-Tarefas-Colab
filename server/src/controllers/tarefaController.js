@@ -7,7 +7,7 @@ const tarefaController={
  listar: async (req, res) => {
 
   try {
-    const response=await mysql.execute( ` SELECT *from  tarefa`)
+    const response=await mysql.execute( ` SELECT *from  tarefa ORDER BY id DESC`)
     return res.status(200).send(response)
   } catch (error) {
     return res.status(500).json({ error:error.sqlMessage });
@@ -32,7 +32,7 @@ const tarefaController={
   create: async (req, res) => {
   
        try {
-        const { titulo,descricao } = req.body;
+        const { titulo,descricao,favorite } = req.body;
         if(!titulo || !descricao){
           return res.status(400).json({ error: 'Titulo e descrição são obrigatórios' });
          }
@@ -43,11 +43,11 @@ if (tarefa.length > 0) {
   });
 } 
 await mysql.execute(
-        "INSERT INTO tarefa(titulo, descricao) VALUES (?,?) ",
-        [titulo, descricao]
+        "INSERT INTO tarefa(titulo, descricao,favorite) VALUES (?,?,?) ",
+        [titulo, descricao,favorite]
       );
    
-   return res.status(201).json({message: 'Tarefa cadastrada com sucesso'});
+   return res.status(201).json({message: 'Tarefa cadastrada com sucesso',titulo,descricao});
   
   } catch (error) {
     return res.status(500).json({ error:error.sqlMessage })
@@ -56,7 +56,7 @@ await mysql.execute(
 
   update: async (req, res) => {
     const { id } = req.params;
-    const { titulo, descricao} = req.body;
+    const { titulo, descricao,favorite} = req.body;
     if (!titulo || !descricao) {
       return res.status(400).json({ error: 'Titulo e descrição são obrigatórios' });
     }
@@ -68,8 +68,8 @@ await mysql.execute(
       });
      }
      await mysql.execute(
-`UPDATE tarefa SET titulo=? , descricao=?  WHERE id=?`,
-      [titulo, descricao,id]
+`UPDATE tarefa SET titulo=? , descricao=?,favorite=? WHERE id=?`,
+      [titulo, descricao,favorite,id]
     );
   return res.status(200).json({message: 'Tarefa atualizada com sucesso'});
     } catch (error) {

@@ -71,7 +71,7 @@ textarea{
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
-  height: 310px;
+  height: 200px;
   padding: 5px 0 5px 15px;
 }
 
@@ -93,32 +93,13 @@ transform: Scale(1.6);
 
 
 
-/* .lista-favorito{
-  display: flex;
-  flex-wrap: wrap;
-  gap:25px;
-  justify-content: start;
-  padding: 0  40px 0  120px;
-  
-  } */
-/* .mains{
-  display: flex;
-}
-  
- */
 @media (max-width: 768px) {
   .lista-favorito{
     grid-template-columns: 1fr;
     display: grid;
     justify-items: center;
   }
-  /* .titles{
-    
-    align-items: flex-start;
-   flex-direction: column;
-   padding-bottom: 30px; 
-  } */
-  
+
 
 }
 

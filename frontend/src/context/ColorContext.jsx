@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
+import { CardContext } from "./CardContext";
 
 
 
@@ -6,11 +7,12 @@ export const ColorContext = createContext({})
 export default function ColorProvider({children}) {
 
 
-const [colors, setColors] = useState({});
+const [colors, setColors] = useState("#fffff");
 const [selectedItem, setSelectedItem] = useState(null);
-
+//  const { getTodos } = useContext(CardContext);
 // Carrega as cores salvas no localStorage ao iniciar
 useEffect(() => {
+
   const savedColors = JSON.parse(localStorage.getItem("colors")) || {};
   setColors(savedColors);
 }, []);

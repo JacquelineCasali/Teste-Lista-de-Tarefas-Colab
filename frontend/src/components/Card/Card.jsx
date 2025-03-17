@@ -58,8 +58,10 @@ function Card({ item, isFavorite }) {
               size={17}
               cursor="pointer"
               className="icone"
+              onClick={abrirModal}
             />
           </Link>
+
           <Link to={`/edit/${item.id}`}>
             <FaPencil
               style={{
@@ -75,7 +77,6 @@ function Card({ item, isFavorite }) {
               setSelectedItem(selectedItem === item.id ? null : item.id)
             }
             style={{
-              // marginRight: "150px",
               cursor: "pointer",
               color: "black",
               fontSize: 20,
@@ -86,7 +87,23 @@ function Card({ item, isFavorite }) {
           style={{ fontSize: 25, color: "black", cursor: "pointer" }}
           onClick={abrirModal}
         />
+        <Modal isOpen={openModal} isClose={fecharModal}>
+          <h2>Olá</h2>
+          <span style={{ padding: " 10px 0" }}>
+            Tem certeza que deseja deletar essa Tarefa?
+            <strong> {item.titulo}</strong>
+          </span>
+          <div>
+            <button onClick={fecharModal} className="btn">
+              Cancelar
+            </button>
+            <button onClick={() => handleDelete(item)} className="btn-del">
+              Deletar
+            </button>
+          </div>
+        </Modal>
       </div>
+
       <div className="itemColor">
         {selectedItem === item.id && (
           <div className="colores">
@@ -102,21 +119,6 @@ function Card({ item, isFavorite }) {
         )}
       </div>
 
-      <Modal isOpen={openModal} isClose={fecharModal}>
-        <h2>Olá</h2>
-        <span style={{ padding: " 10px 0" }}>
-          Tem certeza que deseja deletar essa Tarefa?
-          <strong> {item.titulo}</strong>
-        </span>
-        <div>
-          <button onClick={fecharModal} className="btn">
-            Cancelar
-          </button>
-          <button onClick={() => handleDelete(item)} className="btn-del">
-            Deletar
-          </button>
-        </div>
-      </Modal>
       {/* </div> */}
     </>
   );

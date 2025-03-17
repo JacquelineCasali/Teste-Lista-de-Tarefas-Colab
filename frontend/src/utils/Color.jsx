@@ -1,8 +1,10 @@
 export  const colorOptions = [
-    "#BAE2FF",
+  "#FFFFFF",  
+  "#BAE2FF",
   "#B9FFDD",
   "#FFE8AC",
   "#FFCAB9",
+
   "#F99494",
   "#9DD6FF",
   "#ECA1FF",
@@ -11,4 +13,4 @@ export  const colorOptions = [
   "#CDCDCD",
   "#979797",
   "#A99A7C",
-    "#e74c3c", "#f39c12", "#2ecc71", "#3498db", "#9b59b6"]; // Cores predefinidas
+    ]; // Cores predefinidas

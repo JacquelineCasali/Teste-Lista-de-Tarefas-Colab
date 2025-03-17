@@ -1,10 +1,11 @@
 import { createContext, useEffect, useState } from "react"
 import api from "../api/api";
+import { useParams } from "react-router-dom";
 
 export const CardContext = createContext({})
 export default function CardProvider({children}) {
 
-   
+
     const [data, setData] = useState([]);
     const [busca, setBusca] = useState("");
   async function getTodos() {
@@ -23,6 +24,7 @@ export default function CardProvider({children}) {
 const searchLowerCase = busca.toLowerCase();
 const dados = data.filter((funcionario) =>
 funcionario.titulo.toLowerCase().includes(searchLowerCase)
+
 );
 
 
