@@ -2,6 +2,12 @@
 
 Este Projeto onde é possivel listar, visualizar, criar, editar, excluir tarefas .
 
+## video 
+
+
+https://github.com/user-attachments/assets/7ca3b81e-3e91-4175-99e5-8c7a65372e14
+
+
 ## Repositorio do Projeto
 
 https://github.com/JacquelineCasali/Teste-Lista-de-Tarefas-Colab.git
